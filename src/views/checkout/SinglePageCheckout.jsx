@@ -8,7 +8,9 @@ import ShippingForm from './single/ShippingForm';
 import CreditPayment from './single/CreditPayment';
 import Total from './single/Total';
 import { loadStripe } from '@stripe/stripe-js';
-
+console.log('ShippingForm:', ShippingForm);
+console.log('BasketItem:', BasketItem);
+console.log('Total:', Total);
 // Stripe publishable key from Vercel env
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);

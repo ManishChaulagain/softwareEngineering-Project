@@ -61,7 +61,23 @@ const SinglePageCheckout = () => {
 
   return (
     <div className="checkout p-4 max-w-3xl mx-auto">
-      asdasd
+       <h2 className="text-2xl font-bold text-center mb-6">Checkout</h2>
+       <Formik
+      initialValues={{
+        fullname: '',
+        email: '',
+        address: '',
+        mobile: '',
+        isInternational: false,
+        cardnumber: '',
+        expiry: '',
+        ccv: '',
+        type: 'stripe'
+      }}
+      validationSchema={CheckoutSchema}
+      onSubmit={handlePlaceOrder}
+    >
+    </Formik>
     </div>
   );
 };

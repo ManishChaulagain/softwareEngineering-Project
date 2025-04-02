@@ -126,6 +126,7 @@ import SinglePageCheckout from '@/views/checkout/SinglePageCheckout'; // ✅ new
 import AdminRoute from './AdminRoute';
 import ClientRoute from './ClientRoute';
 import PublicRoute from './PublicRoute';
+import ThankYou from '@/views/checkout/ThankYou';
 
 export const history = createBrowserHistory();
 
@@ -161,7 +162,7 @@ const AppRouter = () => (
         <AdminRoute component={view.Products} path={ROUTES.ADMIN_PRODUCTS} />
         <AdminRoute component={view.AddProduct} path={ROUTES.ADD_PRODUCT} />
         <AdminRoute component={view.EditProduct} path={`${ROUTES.EDIT_PRODUCT}/:id`} />
-
+        <Route component={ThankYou} exact path="/thank-you" />
         <PublicRoute component={view.PageNotFound} />
       </Switch>
       <Footer />

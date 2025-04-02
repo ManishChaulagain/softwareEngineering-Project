@@ -81,7 +81,7 @@ const SinglePageCheckout = () => {
       >
         {() => (
           <Form>
-            {/* 🛒 Order Summary */}
+            {/* Order Summary */}
             <section className="mb-6">
               <h3 className="text-xl font-semibold mb-2">🛒 Order Summary</h3>
               {basket.length === 0 ? (
@@ -101,13 +101,13 @@ const SinglePageCheckout = () => {
               </div>
             </section>
 
-            {/* 📦 Shipping */}
+            {/* Shipping Details */}
             <section className="mb-6">
               <h3 className="text-xl font-semibold mb-2">📦 Shipping Information</h3>
               <ShippingForm />
             </section>
 
-            {/* 💳 Payment */}
+            {/* Payment */}
             <section className="mb-6">
               <h3 className="text-xl font-semibold mb-2">💳 Payment</h3>
               <CreditPayment />
@@ -125,6 +125,7 @@ const SinglePageCheckout = () => {
           </Form>
         )}
       </Formik>
+
 
     </div>
   );

@@ -10,7 +10,7 @@ import Total from './single/Total';
 import { loadStripe } from '@stripe/stripe-js';
 
 // Stripe publishable key from Vercel env
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(import.meta.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
 const CheckoutSchema = Yup.object().shape({
   fullname: Yup.string().required('Full name is required'),

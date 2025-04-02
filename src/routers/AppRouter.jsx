@@ -8,6 +8,8 @@ import * as view from '@/views';
 import AdminRoute from './AdminRoute';
 import ClientRoute from './ClientRoute';
 import PublicRoute from './PublicRoute';
+import ThankYou from '@/views/checkout/ThankYou';
+
 
 // Revert back to history v4.10.0 because
 // v5.0 breaks navigation
@@ -35,7 +37,7 @@ const AppRouter = () => (
           path={ROUTES.SHOP}
         />
         <Route
-          component={view.ThankYou}
+          component={ThankYou}
           path="/thank-you"
         />
 
@@ -167,4 +169,4 @@ const AppRouter = () => (
 //   </Router>
 // );
 
-// export default AppRouter;
+export default AppRouter;

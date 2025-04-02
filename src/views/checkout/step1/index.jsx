@@ -15,8 +15,15 @@ const OrderSummary = ({ basket, subtotal }) => {
   useScrollTop();
   const dispatch = useDispatch();
   const history = useHistory();
+
   const onClickPrevious = () => history.push('/');
-  const onClickNext = () => history.push(CHECKOUT_STEP_2);
+
+  const onClickNext = () => {
+    // ✅ Save basket and subtotal to localStorage
+    localStorage.setItem('checkout_basket', JSON.stringify(basket));
+    localStorage.setItem('checkout_subtotal', subtotal);
+    history.push(CHECKOUT_STEP_2);
+  };
 
   return (
     <div className="checkout">

@@ -73,40 +73,28 @@ const ShippingDetails = ({ profile, shipping, subtotal }) => {
           <h3 className="text-center">Shipping Details</h3>
           <Formik
             initialValues={initFormikValues}
-            validateOnChange
-            validationSchema={FormSchema}
-            onSubmit={onSubmitForm}
+            validationSchema={ShippingSchema}
+            onSubmit={(values) => {
+              localStorage.setItem('checkout_shipping', JSON.stringify(values));
+              history.push(CHECKOUT_STEP_3);
+            }}
           >
             {() => (
-              <Form>
+              <Form className="checkout-step-2">
                 <ShippingForm />
-                <br />
-                {/*  ---- TOTAL --------- */}
-                <ShippingTotal subtotal={subtotal} />
-                <br />
-                {/*  ----- NEXT/PREV BUTTONS --------- */}
+                <ShippingTotal subtotal={subtotal} isInternational={values.isInternational} />
                 <div className="checkout-shipping-action">
                   <button
-                    className="button button-muted"
-                    onClick={() => history.push(CHECKOUT_STEP_1)}
-                    type="button"
-                  >
-                    <ArrowLeftOutlined />
-                    &nbsp;
-                    Go Back
-                  </button>
-                  <button
-                    className="button button-icon"
+                    className="button"
                     type="submit"
                   >
                     Next Step
-                    &nbsp;
-                    <ArrowRightOutlined />
                   </button>
                 </div>
               </Form>
             )}
           </Formik>
+
         </div>
       </div>
     </Boundary>

@@ -122,7 +122,7 @@ import { createBrowserHistory } from 'history';
 import React from 'react';
 import { Route, Router, Switch } from 'react-router-dom';
 import * as view from '@/views';
-import SinglePageCheckout from '@/views/checkout/SinglePageCheckout'; // ✅ new import
+import SinglePageCheckout from '@/views/checkout/SinglePageCheckout';
 import AdminRoute from './AdminRoute';
 import ClientRoute from './ClientRoute';
 import PublicRoute from './PublicRoute';

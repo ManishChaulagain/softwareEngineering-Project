@@ -1,27 +1,18 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useScrollTop, useDocumentTitle } from '@/hooks';
 import { BasketItem } from '@/components/basket';
-import ShippingForm from './single/ShippingForm';
-import CreditPayment from './single/CreditPayment';
-import Total from './single/Total';
 import { loadStripe } from '@stripe/stripe-js';
-console.log('ShippingForm:', ShippingForm);
-console.log('BasketItem:', BasketItem);
-console.log('Total:', Total);
-// Stripe publishable key from Vercel env
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
-
 
 const CheckoutSchema = Yup.object().shape({
   fullname: Yup.string().required('Full name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   address: Yup.string().required('Address is required'),
-  mobile: Yup.string().required('Mobile number is required'),
-  isInternational: Yup.boolean()
+  mobile: Yup.string().required('Mobile number is required')
 });
 
 const SinglePageCheckout = () => {
@@ -48,16 +39,18 @@ const SinglePageCheckout = () => {
         body: JSON.stringify({ items: lineItems })
       });
 
-      const session = await res.json();
-
-      if (session.id) {
-        await stripe.redirectToCheckout({ sessionId: session.id });
-      } else {
-        alert('Failed to create Stripe session.');
+      if (!res.ok) {
+        const errorText = await res.text();
+        console.error('Stripe API error:', errorText);
+        alert('Checkout session creation failed.');
+        return;
       }
+
+      const session = await res.json();
+      await stripe.redirectToCheckout({ sessionId: session.id });
     } catch (err) {
       console.error('Stripe Checkout Error:', err);
-      alert('Something went wrong. Please try again.');
+      alert('Something went wrong.');
     }
   };
 
@@ -65,34 +58,64 @@ const SinglePageCheckout = () => {
     <div className="checkout p-4 max-w-3xl mx-auto">
       <h2 className="text-2xl font-bold text-center mb-6">Checkout</h2>
       <Formik
-  initialValues={{
-    fullname: '',
-    email: '',
-    address: '',
-    mobile: '',
-    isInternational: false
-  }}
-  onSubmit={(values) => {
-    console.log('Submit values:', values);
-  }}
->
-  {() => (
-    <Form>
-      <div>
-        <label>Full Name</label>
-        <input name="fullname" type="text" />
-      </div>
-      <div>
-        <label>Email</label>
-        <input name="email" type="email" />
-      </div>
-      <button type="submit">Submit</button>
-    </Form>
-  )}
-</Formik>
+        initialValues={{
+          fullname: '',
+          email: '',
+          address: '',
+          mobile: ''
+        }}
+        validationSchema={CheckoutSchema}
+        onSubmit={handlePlaceOrder}
+      >
+        {({ errors, touched }) => (
+          <Form>
+            <section className="mb-6">
+              <h3 className="text-xl font-semibold mb-2">Order Summary</h3>
+              {basket.length === 0 ? (
+                <p>Your cart is empty</p>
+              ) : (
+                basket.map((product) => (
+                  <BasketItem
+                    key={product.id}
+                    product={product}
+                    basket={basket}
+                    dispatch={dispatch}
+                  />
+                ))
+              )}
+              <div className="text-right mt-2">
+                <strong>Subtotal:</strong> ${subtotal.toFixed(2)}
+              </div>
+            </section>
 
+            <section className="mb-6">
+              <h3 className="text-xl font-semibold mb-2">Shipping Information</h3>
+              <div className="mb-2">
+                <Field name="fullname" className="input" placeholder="Full Name" />
+                {errors.fullname && touched.fullname && <div className="text-red-500">{errors.fullname}</div>}
+              </div>
+              <div className="mb-2">
+                <Field name="email" type="email" className="input" placeholder="Email" />
+                {errors.email && touched.email && <div className="text-red-500">{errors.email}</div>}
+              </div>
+              <div className="mb-2">
+                <Field name="address" className="input" placeholder="Shipping Address" />
+                {errors.address && touched.address && <div className="text-red-500">{errors.address}</div>}
+              </div>
+              <div className="mb-2">
+                <Field name="mobile" className="input" placeholder="Mobile Number" />
+                {errors.mobile && touched.mobile && <div className="text-red-500">{errors.mobile}</div>}
+              </div>
+            </section>
 
-
+            <div className="text-center">
+              <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded">
+                Place Order
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };

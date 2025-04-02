@@ -16,11 +16,7 @@ import { StepTracker } from '../components';
 import withCheckout from '../hoc/withCheckout';
 import ShippingForm from './ShippingForm';
 import ShippingTotal from './ShippingTotal';
-const basket = JSON.parse(localStorage.getItem('checkout_basket'));
-const subtotal = Number(localStorage.getItem('checkout_subtotal'));
-if (!basket || !subtotal) {
-  return <Redirect to="/checkout/step-1" />;
-}
+
 const FormSchema = Yup.object().shape({
   fullname: Yup.string()
     .required('Full name is required.')

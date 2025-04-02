@@ -11,14 +11,14 @@ const ThankYou = () => {
   }, [query]);
 
   return (
-    <div className="p-8 text-center">
-      <h1 className="text-3xl font-bold mb-4">🎉 Thank You for Your Order!</h1>
-      <p className="mb-2">Your payment was successful.</p>
-      {sessionId && (
+    <div className="thank-you-page text-center py-10">
+      <h1 className="text-3xl font-bold text-green-600 mb-4">✅ Thank you for your order!</h1>
+      <p className="text-lg mb-2">We have received your payment successfully.</p>
+      {/* {sessionId && (
         <p className="text-sm text-gray-500">
           Session ID: <code>{sessionId}</code>
         </p>
-      )}
+      )} */}
     </div>
   );
 };

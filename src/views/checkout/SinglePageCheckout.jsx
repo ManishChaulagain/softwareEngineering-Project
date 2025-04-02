@@ -7,7 +7,10 @@ import { BasketItem } from '@/components/basket';
 import ShippingForm from './single/ShippingForm';
 import CreditPayment from './single/CreditPayment';
 import Total from './single/Total';
+import { loadStripe } from '@stripe/stripe-js';
 
+// Stripe publishable key from Vercel env
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const CheckoutSchema = Yup.object().shape({
   fullname: Yup.string().required('Full name is required'),
@@ -25,10 +28,33 @@ const SinglePageCheckout = () => {
   const basket = useSelector((state) => state.basket);
   const subtotal = basket.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  const handlePlaceOrder = (values) => {
-    console.log('🧾 Order:', basket);
-    console.log('📦 Shipping:', values);
-    alert('✅ Order placed! (You can now connect Stripe here)');
+  const handlePlaceOrder = async (values) => {
+    const stripe = await stripePromise;
+
+    try {
+      const lineItems = basket.map(item => ({
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity
+      }));
+
+      const res = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: lineItems })
+      });
+
+      const session = await res.json();
+
+      if (session.id) {
+        await stripe.redirectToCheckout({ sessionId: session.id });
+      } else {
+        alert('Failed to create Stripe session.');
+      }
+    } catch (err) {
+      console.error('Stripe Checkout Error:', err);
+      alert('Something went wrong. Please try again.');
+    }
   };
 
   return (

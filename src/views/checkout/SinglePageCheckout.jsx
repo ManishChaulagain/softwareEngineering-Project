@@ -77,6 +77,46 @@ const SinglePageCheckout = () => {
       validationSchema={CheckoutSchema}
       onSubmit={handlePlaceOrder}
     >
+      {() => (
+        <Form>
+          {/* Order Summary */}
+          <section className="mb-6">
+            <h3 className="text-xl font-semibold mb-2">🛒 Order Summary</h3>
+            {basket.length === 0 ? (
+              <p>Your cart is empty</p>
+            ) : (
+              basket.map((product) => (
+                <BasketItem
+                  key={product.id}
+                  product={product}
+                  basket={basket}
+                  dispatch={dispatch}
+                />
+              ))
+            )}
+            <div className="text-right mt-2">
+              <strong>Subtotal:</strong> ${subtotal.toFixed(2)}
+            </div>
+          </section>
+
+          {/* Shipping Details */}
+          <section className="mb-6">
+            <h3 className="text-xl font-semibold mb-2">📦 Shipping Information</h3>
+            <ShippingForm />
+          </section>
+
+          {/* Payment */}
+
+          <div className="text-center">
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-6 py-2 rounded"
+            >
+              Place Order
+            </button>
+          </div>
+        </Form>
+      )}
     </Formik>
     </div>
   );

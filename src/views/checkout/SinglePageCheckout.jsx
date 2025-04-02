@@ -8,9 +8,7 @@ import ShippingForm from './single/ShippingForm';
 import CreditPayment from './single/CreditPayment';
 import Total from './single/Total';
 import { loadStripe } from '@stripe/stripe-js';
-console.log('ShippingForm:', ShippingForm);
-console.log('BasketItem:', BasketItem);
-console.log('Total:', Total);
+
 // Stripe publishable key from Vercel env
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
@@ -63,23 +61,69 @@ const SinglePageCheckout = () => {
 
   return (
     <div className="checkout p-4 max-w-3xl mx-auto">
-       <h2 className="text-2xl font-bold text-center mb-6">Checkout</h2>
-       <Formik
-      initialValues={{
-        fullname: '',
-        email: '',
-        address: '',
-        mobile: '',
-        isInternational: false,
-        cardnumber: '',
-        expiry: '',
-        ccv: '',
-        type: 'stripe'
-      }}
-      validationSchema={CheckoutSchema}
-      onSubmit={handlePlaceOrder}
-    >
-    </Formik>
+      <h2 className="text-2xl font-bold text-center mb-6">Checkout</h2>
+      <Formik
+        initialValues={{
+          fullname: '',
+          email: '',
+          address: '',
+          mobile: '',
+          isInternational: false,
+          cardnumber: '',
+          expiry: '',
+          ccv: '',
+          type: 'stripe'
+        }}
+        validationSchema={CheckoutSchema}
+        onSubmit={handlePlaceOrder}
+      >
+        {() => (
+          <Form>
+            {/* 🛒 Order Summary */}
+            <section className="mb-6">
+              <h3 className="text-xl font-semibold mb-2">🛒 Order Summary</h3>
+              {basket.length === 0 ? (
+                <p>Your cart is empty</p>
+              ) : (
+                basket.map((product) => (
+                  <BasketItem
+                    key={product.id}
+                    product={product}
+                    basket={basket}
+                    dispatch={dispatch}
+                  />
+                ))
+              )}
+              <div className="text-right mt-2">
+                <strong>Subtotal:</strong> ${subtotal.toFixed(2)}
+              </div>
+            </section>
+
+            {/* 📦 Shipping */}
+            <section className="mb-6">
+              <h3 className="text-xl font-semibold mb-2">📦 Shipping Information</h3>
+              <ShippingForm />
+            </section>
+
+            {/* 💳 Payment */}
+            <section className="mb-6">
+              <h3 className="text-xl font-semibold mb-2">💳 Payment</h3>
+              <CreditPayment />
+              <Total isInternational={false} subtotal={subtotal} />
+            </section>
+
+            <div className="text-center">
+              <button
+                type="submit"
+                className="bg-blue-600 text-white px-6 py-2 rounded"
+              >
+                Place Order
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+
     </div>
   );
 };

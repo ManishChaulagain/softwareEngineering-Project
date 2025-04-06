@@ -1,87 +1,63 @@
-// ---------------------------
-// 00 - VENDORS
 
-// ---------------------------
-// 01 - SETTINGS
-
-@import './1 - settings/breakpoints';
-@import './1 - settings/colors';
-@import './1 - settings/sizes';
-@import './1 - settings/typography';
-@import './1 - settings/zindex';
-
-// ---------------------------
-// 02 - TOOLS
-
-@import './2 - tools/functions';
-@import './2 - tools/mixins';
-
-// ---------------------------
-// 03 - GENERIC
-
-// ---------------------------
-// 04 - ELEMENTS
-
-@import './4 - elements/base';
-@import './4 - elements/button';
-@import './4 - elements/input';
-@import './4 - elements/link';
-@import './4 - elements/select';
-@import './4 - elements/textarea';
-@import './4 - elements/label';
+// SETTINGS
+@import './settings/breakpoints';
+@import './settings/colors';
+@import './settings/sizes';
+@import './settings/typography';
+@import './settings/zindex';
 
 
-// ---------------------------
-// 05 - COMPONENTS
+// TOOLS
 
-@import './5 - components/icons';
-@import './5 - components/navigation';
-@import './5 - components/product';
-@import './5 - components/basket';
-@import './5 - components/sidebar';
-@import './5 - components/searchbar';
-@import './5 - components/badge';
-@import './5 - components/footer';
-@import './5 - components/filter';
-@import './5 - components/pricerange';
-@import './5 - components/modal';
-@import './5 - components/auth';
-@import './5 - components/banner';
-@import './5 - components/toast';
-@import './5 - components/home';
-@import './5 - components/circular-progress';
-@import './5 - components/preloader';
-@import './5 - components/pill';
-@import './5 - components/tooltip';
-@import './5 - components/color-chooser';
-
-// -- Admin components
-@import './5 - components/admin/grid';
-@import './5 - components/admin/product';
-@import './5 - components/sidenavigation';
-// @import './5 - components/admin/user';
-
-// -- Mobile components
-// @import './5 - components/mobile/bottom-navigation';
-@import './5 - components/mobile/mobile-navigation';
-
-// -- Profile components
-@import './5 - components/profile/user-nav';
-@import './5 - components/profile/user-profile';
-@import './5 - components/profile/user-tab';
-@import './5 - components/profile/editprofile';
-
-// -- Checkout components
-@import './5 - components/checkout/checkout';
-
-// -- 404
-@import './5 - components/404/page-not-found';
+@import './tools/functions';
+@import './tools/mixins';
 
 
+// ELEMENTS
 
-// ---------------------------
-// 06 - UTILS
+@import './elements/base';
+@import './elements/button';
+@import './elements/input';
+@import './elements/link';
+@import './elements/select';
+@import './elements/textarea';
+@import './elements/label';
 
-@import './6 - utils/state';
-@import './6 - utils/animation';
-@import './6 - utils/utils';
+// COMPONENTS
+
+@import './components/icons';
+@import './components/navigation';
+@import './components/product';
+@import './components/basket';
+@import './components/sidebar';
+@import './components/badge';
+@import './components/footer';
+@import './components/filter';
+@import './components/pricerange';
+@import './components/modal';
+@import './components/auth';
+@import './components/banner';
+@import './components/toast';
+@import './components/home';
+@import './components/circular-progress';
+@import './components/pill';
+@import './components/tooltip';
+@import './components/color-chooser';
+
+// Admin components
+@import './components/admin/grid';
+@import './components/admin/product';
+@import './components/sidenavigation';
+@import './components/mobile/mobile-navigation';
+@import './components/profile/user-nav';
+@import './components/profile/user-profile';
+@import './components/profile/user-tab';
+@import './components/profile/editprofile';
+@import './components/checkout/checkout';
+@import './components/404/page-not-found';
+
+// UTILS
+
+@import './utils/state';
+@import './utils/animation';
+@import './utils/utils';

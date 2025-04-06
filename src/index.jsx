@@ -1,4 +1,3 @@
-import { Preloader } from '@/components/common';
 import 'normalize.css/normalize.css';
 import React from 'react';
 import { render } from 'react-dom';
@@ -19,9 +18,6 @@ WebFont.load({
 
 const { store, persistor } = configureStore();
 const root = document.getElementById('app');
-
-// Render the preloader on initial load
-render(<Preloader />, root);
 
 firebase.auth.onAuthStateChanged((user) => {
   if (user) {

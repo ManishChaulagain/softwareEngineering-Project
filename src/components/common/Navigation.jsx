@@ -10,9 +10,7 @@ import {
 import UserAvatar from '@/views/account/components/UserAvatar';
 import BasketToggle from '../basket/BasketToggle';
 import Badge from './Badge';
-import FiltersToggle from './FiltersToggle';
 import MobileNavigation from './MobileNavigation';
-import SearchBar from './SearchBar';
 
 const Navigation = () => {
   const navbar = useRef(null);
@@ -46,9 +44,6 @@ const Navigation = () => {
 
   // disable the basket toggle to these pathnames
   const basketDisabledpathnames = [
-    ROUTE.CHECKOUT_STEP_1,
-    ROUTE.CHECKOUT_STEP_2,
-    ROUTE.CHECKOUT_STEP_3,
     ROUTE.SIGNIN,
     ROUTE.SIGNUP,
     ROUTE.FORGOT_PASSWORD
@@ -77,15 +72,6 @@ const Navigation = () => {
         <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.FEATURED_PRODUCTS}>Featured</NavLink></li>
         <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.RECOMMENDED_PRODUCTS}>Recommended</NavLink></li>
       </ul>
-      {(pathname === ROUTE.SHOP || pathname === ROUTE.SEARCH) && (
-        <FiltersToggle>
-          <button className="button-muted button-small" type="button">
-            Filters &nbsp;
-            <FilterOutlined />
-          </button>
-        </FiltersToggle>
-      )}
-      <SearchBar />
       <ul className="navigation-menu">
         <li className="navigation-menu-item">
           <BasketToggle>

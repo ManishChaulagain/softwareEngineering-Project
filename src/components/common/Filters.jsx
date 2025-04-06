@@ -94,9 +94,10 @@ const Filters = ({ closeModal }) => {
           >
             <option value="">All Brands</option>
             <option value="salt">Apple</option>
-            <option value="betsin">Betsin Maalat</option>
-            <option value="black">Apple</option>
-            <option value="sexbomb">Sexbomb</option>
+            <option value="betsin">Samsung</option>
+            <option value="black">Xiaomi</option>
+            <option value="sexbomb">Oppo</option>
+            <option value="sexbomb">Vivo</option>
           </select>
         )}
       </div>

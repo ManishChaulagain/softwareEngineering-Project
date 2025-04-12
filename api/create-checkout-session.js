@@ -43,11 +43,11 @@ export default async function handler(req, res) {
     });
     
 
-    console.log('✅ Stripe session created:', session.id);
+    console.log('Stripe session created:', session.id);
 
     return res.status(200).json({ id: session.id });
   } catch (error) {
-    console.error('❌ Stripe error:', error.message);
+    console.error('Stripe error:', error.message);
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 }

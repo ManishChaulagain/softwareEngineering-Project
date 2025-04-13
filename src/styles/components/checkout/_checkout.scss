@@ -271,22 +271,44 @@
   background-position: 175px 115px;
 }
 
-.shipping-form{
-  width: 50%;
-  border: 2px solid black;
-  margin-top: 12px;
-  padding-left: 24px;
-  padding-right: 24px;
-  margin-bottom: 24px;
-  .form-field{
+.shipping-form {
+  width: 100%;
+  max-width: 600px;
+  margin: 16px auto 32px auto;
+  padding: 24px;
+  border: 2px solid #000;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+
+  .form-field {
     width: 100%;
-    margin-bottom: 24px;;
-    input{
-      width: 100%;
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
-    .text-red-500{
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .text-red-500 {
       color: red;
-      padding-top: 12px;
+      font-size: 14px;
+      padding-top: 8px;
     }
   }
+}
+.button-position{
+  display: flex;
+  justify-content: center;
 }

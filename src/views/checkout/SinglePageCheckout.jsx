@@ -108,7 +108,7 @@ const SinglePageCheckout = () => {
               </div>
             </section>
 
-            <div className="text-center">
+            <div className="button-position">
               <button type="submit" className="button bg-blue-600 text-white px-6 py-2 rounded">
                 Place Order
               </button>

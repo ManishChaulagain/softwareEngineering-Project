@@ -1,5 +1,5 @@
 import { ArrowRightOutlined } from '@ant-design/icons';
-import { MessageDisplay } from '@/components/common';
+import { MessageDisplay} from '@/components/common';
 import { ProductShowcaseGrid } from '@/components/product';
 import { FEATURED_PRODUCTS, RECOMMENDED_PRODUCTS, SHOP } from '@/constants/routes';
 import {
@@ -8,6 +8,7 @@ import {
 import bannerImg from '@/images/banner-iphone.png';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import TypeScript from '@/components/common/TypeScript';
 
 
 const Home = () => {
@@ -33,9 +34,7 @@ const Home = () => {
         <div className="banner">
           <div className="banner-desc">
             <h1 className="text-thin">
-              <strong>Buy</strong>
-              &nbsp;What You&nbsp;
-              <strong>See</strong>
+              <TypeScript ></TypeScript>
             </h1>
             <p>
             The iPhone is a premium smartphone developed by Apple, known for its sleek design, powerful performance, and seamless integration with iOS. It features advanced cameras, high-resolution displays, and security features like Face ID. With regular software updates and a vast app ecosystem, the iPhone offers a smooth and user-friendly experience.

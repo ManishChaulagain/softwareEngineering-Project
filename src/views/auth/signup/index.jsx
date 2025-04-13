@@ -1,5 +1,4 @@
 import { ArrowRightOutlined, LoadingOutlined } from '@ant-design/icons';
-import { SocialLogin } from '@/components/common';
 import { CustomInput } from '@/components/formik';
 import { SIGNIN } from '@/constants/routes';
 import { Field, Form, Formik } from 'formik';
@@ -98,7 +97,7 @@ const SignUp = ({ history }) => {
                         name="email"
                         type="email"
                         label="* Email"
-                        placeholder="test@example.com"
+                        placeholder="Enter Your Email"
                         component={CustomInput}
                       />
                     </div>
@@ -128,10 +127,6 @@ const SignUp = ({ history }) => {
                 )}
               </Formik>
             </div>
-            <div className="auth-divider">
-              <h6>OR</h6>
-            </div>
-            <SocialLogin isLoading={isAuthenticating} />
           </div>
           <div className="auth-message">
             <span className="auth-info">

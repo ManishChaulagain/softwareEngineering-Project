@@ -15,9 +15,10 @@ import * as Yup from 'yup';
 // Default brand names that I used. You can use what you want
 const brandOptions = [
   { value: 'Apple', label: 'Apple' },
-  { value: 'Betsin Maalat', label: 'Betsin Maalat' },
-  { value: 'Sexbomb', label: 'Sexbomb' },
-  { value: 'Black Kibal', label: 'Black Kibal' }
+  { value: 'Samsung', label: 'Samsung' },
+  { value: 'Xiaomi', label: 'Xiaomi' },
+  { value: 'Oppo', label: 'Oppo' },
+  { value: 'Vivo', label: 'Vivo' }
 ];
 
 const FormSchema = Yup.object().shape({
@@ -106,7 +107,7 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                     name="name"
                     type="text"
                     label="* Product Name"
-                    placeholder="Gago"
+                    placeholder="Enter Product Name"
                     style={{ textTransform: 'capitalize' }}
                     component={CustomInput}
                   />

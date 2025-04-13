@@ -121,55 +121,6 @@
   }
 }
 
-.auth-divider {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin: 0 $xl-size;
-
-  h6 {
-    background: $background-color;
-    padding: $s-size;
-    z-index: 1;
-
-    @include mobile {
-      margin: 1rem 0;
-    }
-  }
-
-  &:before,
-  &:after {
-    content: '';
-    position: absolute;
-    height: 30%;
-    width: 1px;
-    background: $border-color;
-
-    @include tablet {
-      width: 50%;
-      height: 1px;
-    }
-  }
-
-  &:before {
-    top: 25%;
-
-    @include mobile {
-      top: 50%;
-      left: 0;
-    }
-  }
-
-  &:after {
-    bottom: 25%;
-
-    @include tablet {
-      right: 0;
-      bottom: 50%;
-    }
-  }
-}
 
 .auth-action {
   display: flex;

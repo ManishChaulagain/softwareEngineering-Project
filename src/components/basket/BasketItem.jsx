@@ -1,16 +1,22 @@
-import { CloseOutlined } from '@ant-design/icons';
-import { BasketItemControl } from '@/components/basket';
-import { ImageLoader } from '@/components/common';
-import { displayMoney } from '@/helpers/utils';
-import PropType from 'prop-types';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropType from 'prop-types';
+import { CloseOutlined } from '@ant-design/icons';
+
+import { BasketItemControl } from '@/components/basket';
+import { ImageLoader } from '@/components/common';
+import { displayMoney } from '@/helpers/utils';
 import { removeFromBasket } from '@/redux/actions/basketActions';
 
 const BasketItem = ({ product }) => {
   const dispatch = useDispatch();
-  const onRemoveFromBasket = () => dispatch(removeFromBasket(product.id));
+
+  const handleRemove = () => dispatch(removeFromBasket(product.id));
+  const {
+    id, name, quantity, selectedSize, selectedColor,
+    availableColors, price, image
+  } = product;
 
   return (
     <div className="basket-item">
@@ -18,49 +24,52 @@ const BasketItem = ({ product }) => {
       <div className="basket-item-wrapper">
         <div className="basket-item-img-wrapper">
           <ImageLoader
-            alt={product.name}
+            alt={name}
             className="basket-item-img"
-            src={product.image}
+            src={image}
           />
         </div>
+
         <div className="basket-item-details">
-          <Link to={`/product/${product.id}`} onClick={() => document.body.classList.remove('is-basket-open')}>
-            <h4 className="underline basket-item-name">
-              {product.name}
-            </h4>
+          <Link
+            to={`/product/${id}`}
+            onClick={() => document.body.classList.remove('is-basket-open')}
+          >
+            <h4 className="underline basket-item-name">{name}</h4>
           </Link>
+
           <div className="basket-item-specs">
             <div>
               <span className="spec-title">Quantity</span>
-              <h5 className="my-0">{product.quantity}</h5>
+              <h5 className="my-0">{quantity}</h5>
             </div>
             <div>
               <span className="spec-title">Size</span>
-              <h5 className="my-0">
-                {product.selectedSize}
-                {' '}
-                mm
-              </h5>
+              <h5 className="my-0">{selectedSize || 'N/A'} mm</h5>
             </div>
             <div>
               <span className="spec-title">Color</span>
-              <div style={{
-                backgroundColor: product.selectedColor || product.availableColors[0],
-                width: '15px',
-                height: '15px',
-                borderRadius: '50%'
-              }}
+              <div
+                style={{
+                  backgroundColor: selectedColor || availableColors?.[0] || '#000',
+                  width: '15px',
+                  height: '15px',
+                  borderRadius: '50%'
+                }}
               />
             </div>
           </div>
         </div>
+
         <div className="basket-item-price">
-          <h4 className="my-0">{displayMoney(product.price * product.quantity)}</h4>
+          <h4 className="my-0">{displayMoney(price * quantity)}</h4>
         </div>
+
         <button
           className="basket-item-remove button button-border button-border-gray button-small"
-          onClick={onRemoveFromBasket}
+          onClick={handleRemove}
           type="button"
+          aria-label="Remove item"
         >
           <CloseOutlined />
         </button>
@@ -71,11 +80,11 @@ const BasketItem = ({ product }) => {
 
 BasketItem.propTypes = {
   product: PropType.shape({
-    id: PropType.string,
-    name: PropType.string,
+    id: PropType.string.isRequired,
+    name: PropType.string.isRequired,
     brand: PropType.string,
-    price: PropType.number,
-    quantity: PropType.number,
+    price: PropType.number.isRequired,
+    quantity: PropType.number.isRequired,
     maxQuantity: PropType.number,
     description: PropType.string,
     keywords: PropType.arrayOf(PropType.string),

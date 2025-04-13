@@ -26,15 +26,15 @@ const EditForm = ({ isLoading, authProvider }) => {
         name="email"
         type="email"
         label="* Email Address"
-        placeholder="test@example.com"
+        placeholder="Enter your email"
         component={CustomInput}
       />
       <Field
         disabled={isLoading}
         name="address"
         type="text"
-        label="Address (Will be used for checkout)"
-        placeholder="#245 Brgy. Maligalig, Arayat Pampanga, Philippines"
+        label="Address"
+        placeholder="Cape Girardeau, MO, USA"
         component={CustomInput}
         style={{ textTransform: 'capitalize' }}
       />
@@ -42,7 +42,7 @@ const EditForm = ({ isLoading, authProvider }) => {
         defaultValue={values.mobile}
         name="mobile"
         disabled={isLoading}
-        label="Mobile Number (Will be used for checkout)"
+        label="Mobile Number"
       />
       <br />
       <div className="edit-user-action">

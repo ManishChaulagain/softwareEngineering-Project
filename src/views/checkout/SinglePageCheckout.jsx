@@ -88,21 +88,21 @@ const SinglePageCheckout = () => {
               </div>
             </section>
 
-            <section className="mb-6">
+            <section className="mb-6 shipping-form">
               <h3 className="text-xl font-semibold mb-2">Shipping Information</h3>
-              <div className="mb-2">
+              <div className="mb-2 form-field">
                 <Field name="fullname" className="input" placeholder="Full Name" />
                 {errors.fullname && touched.fullname && <div className="text-red-500">{errors.fullname}</div>}
               </div>
-              <div className="mb-2">
+              <div className="mb-2 form-field">
                 <Field name="email" type="email" className="input" placeholder="Email" />
                 {errors.email && touched.email && <div className="text-red-500">{errors.email}</div>}
               </div>
-              <div className="mb-2">
+              <div className="mb-2 form-field">
                 <Field name="address" className="input" placeholder="Shipping Address" />
                 {errors.address && touched.address && <div className="text-red-500">{errors.address}</div>}
               </div>
-              <div className="mb-2">
+              <div className="mb-2 form-field">
                 <Field name="mobile" className="input" placeholder="Mobile Number" />
                 {errors.mobile && touched.mobile && <div className="text-red-500">{errors.mobile}</div>}
               </div>

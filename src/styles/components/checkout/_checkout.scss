@@ -270,3 +270,23 @@
 .payment-img-discover {
   background-position: 175px 115px;
 }
+
+.shipping-form{
+  width: 50%;
+  border: 2px solid black;
+  margin-top: 12px;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-bottom: 24px;
+  .form-field{
+    width: 100%;
+    margin-bottom: 24px;;
+    input{
+      width: 100%;
+    }
+    .text-red-500{
+      color: red;
+      padding-top: 12px;
+    }
+  }
+}
